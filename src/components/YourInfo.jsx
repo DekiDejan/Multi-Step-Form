@@ -13,13 +13,13 @@ const YourInfo = ({ data, setData }) => {
   };
 
   const handleFocusChange = (e) => {
-    const { name, value } = e.target;
+    const name = e.target.name;
     setData((prevData) => {
       return {
         ...prevData,
-        wasInputNotClicked: {
-          ...prevData.wasInputNotClicked,
-          [name]: value,
+        wasInputClicked: {
+          ...prevData.wasInputClicked,
+          [name]: !prevData[name],
         },
       };
     });
@@ -35,7 +35,7 @@ const YourInfo = ({ data, setData }) => {
         <div className="mb-4">
           <div className="flex justify-between">
             <label className="block text-sm font-medium">Name</label>
-            {data.formData.name === "" && !data.wasInputNotClicked.name && (
+            {data.formData.name === "" && data.wasInputClicked.name && (
               <p className="text-sm font-medium text-strawberry-red">
                 This field is required
               </p>
@@ -54,7 +54,7 @@ const YourInfo = ({ data, setData }) => {
         <div className="mb-4">
           <div className="flex justify-between">
             <label className="block text-sm font-medium">Email Address</label>
-            {data.formData.email === "" && !data.wasInputNotClicked.email && (
+            {data.formData.email === "" && data.wasInputClicked.email && (
               <p className="text-sm font-medium text-strawberry-red">
                 This field is required
               </p>
@@ -73,7 +73,7 @@ const YourInfo = ({ data, setData }) => {
         <div className="mb-4">
           <div className="flex justify-between">
             <label className="block text-sm font-medium">Phone Number</label>
-            {data.formData.phone === "" && !data.wasInputNotClicked.phone && (
+            {data.formData.phone === "" && data.wasInputClicked.phone && (
               <p className="text-sm font-medium text-strawberry-red">
                 This field is required
               </p>

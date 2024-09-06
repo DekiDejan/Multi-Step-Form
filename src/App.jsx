@@ -12,13 +12,18 @@ const App = () => {
       email: "",
       phone: "",
     },
-    wasInputNotClicked: {
-      name: true,
-      email: true,
-      phone: true,
+    wasInputClicked: {
+      name: false,
+      email: false,
+      phone: false,
     },
     planData: "advanced",
     billingCycle: "monthly",
+    selectedAddOns: {
+      onlineService: false,
+      largerStorage: false,
+      customizableProfile: false,
+    },
   });
 
   const steps = ["Your Info", "Select Plan", "Add-Ons", "Summary"];
