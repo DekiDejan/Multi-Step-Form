@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const steps = ["Your Info", "Select Plan", "Add-Ons", "Summary"];
 
@@ -10,7 +10,17 @@ const App = () => {
     phone: "",
   });
 
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
+
   const nextStep = () => {
+    setFormData({
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      phone: phoneRef.current.value,
+    });
+
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
@@ -18,27 +28,18 @@ const App = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
   const renderStepContent = (step) => {
     switch (step) {
       case 1:
         return (
-          <div>
+          <form>
             <h2 className="text-2xl font-semibold mb-6">Personal Info</h2>
             <div className="mb-4">
               <label className="block text-sm font-medium">Name</label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                ref={nameRef}
+                defaultValue={formData.name}
                 placeholder="e.g. Stephen King"
                 className="border w-full p-2 rounded-md mt-1"
               />
@@ -47,9 +48,8 @@ const App = () => {
               <label className="block text-sm font-medium">Email Address</label>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                ref={emailRef}
+                defaultValue={formData.email}
                 placeholder="e.g. stephenking@lorem.com"
                 className="border w-full p-2 rounded-md mt-1"
               />
@@ -58,22 +58,19 @@ const App = () => {
               <label className="block text-sm font-medium">Phone Number</label>
               <input
                 type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
+                ref={phoneRef}
+                defaultValue={formData.phone}
                 placeholder="e.g. +1 234 567 890"
                 className="border w-full p-2 rounded-md mt-1"
               />
             </div>
-          </div>
+          </form>
         );
-      // Add more cases for other steps as necessary
+      // Add more cases for other steps
       default:
         return <div>Not Found</div>;
     }
   };
-
-  console.log(formData);
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-blue-50">
