@@ -3,6 +3,7 @@ import YourInfo from "./components/YourInfo";
 import SelectPlan from "./components/SelectPlan";
 import Steps from "./components/Steps";
 import Buttons from "./components/Buttons";
+import AddOns from "./components/AddOns";
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -36,6 +37,8 @@ const App = () => {
         return <YourInfo data={data} setData={setData} />;
       case 2:
         return <SelectPlan data={data} setData={setData} />;
+      case 3:
+        return <AddOns data={data} setData={setData} />;
 
       default:
         return <div>In progress...</div>;
