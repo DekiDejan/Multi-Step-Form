@@ -1,26 +1,41 @@
 import React, { useState, useRef } from "react";
 import bgDesktop from "./assets/images/bg-sidebar-desktop.svg";
-
-const steps = ["Your Info", "Select Plan", "Add-Ons", "Summary"];
+import classes from "./App.module.css";
+import arcadeIcon from "./assets/images/icon-arcade.svg";
+import advancedIcon from "./assets/images/icon-advanced.svg";
+import proIcon from "./assets/images/icon-pro.svg";
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
+  const [data, setData] = useState({
+    formData: {},
+    planData: "advanced",
+    billingCycle: "monthly",
   });
 
   const nameRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
 
+  const steps = ["Your Info", "Select Plan", "Add-Ons", "Summary"];
+
+  const planOptions = {
+    arcade: { monthly: 9, yearly: 90 },
+    advanced: { monthly: 12, yearly: 120 },
+    pro: { monthly: 15, yearly: 150 },
+  };
+
   const nextStep = () => {
     if (currentStep === 1) {
-      setFormData({
-        name: nameRef.current.value,
-        email: emailRef.current.value,
-        phone: phoneRef.current.value,
+      setData((prevData) => {
+        return {
+          ...prevData,
+          formData: {
+            name: nameRef.current.value,
+            email: emailRef.current.value,
+            phone: phoneRef.current.value,
+          },
+        };
       });
     }
 
@@ -30,6 +45,26 @@ const App = () => {
   const prevStep = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
+
+  const handleBillingCycleChange = () => {
+    setData((prevData) => {
+      return {
+        ...prevData,
+        billingCycle: data.billingCycle === "monthly" ? "yearly" : "monthly",
+      };
+    });
+  };
+
+  const handlePlanChange = (planType) => {
+    setData((prevData) => {
+      return {
+        ...prevData,
+        planData: planType,
+      };
+    });
+  };
+
+  console.log(data);
 
   const renderStepContent = (step) => {
     switch (step) {
@@ -45,7 +80,7 @@ const App = () => {
               <input
                 type="text"
                 ref={nameRef}
-                defaultValue={formData.name}
+                defaultValue={data.formData.name}
                 placeholder="e.g. Stephen King"
                 className="border w-full p-2 rounded-md mt-1 outline-marine-blue"
               />
@@ -55,7 +90,7 @@ const App = () => {
               <input
                 type="email"
                 ref={emailRef}
-                defaultValue={formData.email}
+                defaultValue={data.formData.email}
                 placeholder="e.g. stephenking@lorem.com"
                 className="border w-full p-2 rounded-md mt-1 outline-marine-blue"
               />
@@ -65,16 +100,110 @@ const App = () => {
               <input
                 type="text"
                 ref={phoneRef}
-                defaultValue={formData.phone}
+                defaultValue={data.formData.phone}
                 placeholder="e.g. +1 234 567 890"
                 className="border w-full p-2 rounded-md mt-1 outline-marine-blue"
               />
             </div>
           </form>
         );
-      // Add more cases for other steps
+      case 2:
+        return (
+          <>
+            <h2 className="text-2xl font-semibold mb-2">Select your plan</h2>
+            <p className="text-sm text-cool-gray mb-6">
+              You have the option of monthly or yearly billing.
+            </p>
+
+            <div className="grid grid-cols-3 gap-4 mb-12">
+              <div
+                onClick={() => handlePlanChange("arcade")}
+                className={`cursor-pointer border rounded-lg p-4 ${
+                  data.planData === "arcade"
+                    ? "border-marine-blue bg-blue-50"
+                    : "border-light-gray"
+                }`}
+              >
+                <img src={arcadeIcon} alt="Arcade" className="mt-2 mb-10" />
+                <h3 className="text-lg font-semibold">Arcade</h3>
+                <p className="text-cool-gray my-1">{`$${
+                  planOptions.arcade[data.billingCycle]
+                }/${data.billingCycle === "monthly" ? "mo" : "yr"}`}</p>
+                {data.billingCycle === "yearly" && (
+                  <p className="text-sm">2 months free</p>
+                )}
+              </div>
+
+              <div
+                onClick={() => handlePlanChange("advanced")}
+                className={`cursor-pointer border rounded-lg p-4 ${
+                  data.planData === "advanced"
+                    ? "border-marine-blue bg-blue-50"
+                    : "border-light-gray"
+                }`}
+              >
+                <img src={advancedIcon} alt="Advanced" className="mt-2 mb-10" />
+                <h3 className="text-lg font-semibold">Advanced</h3>
+                <p className="text-cool-gray my-1">{`$${
+                  planOptions.advanced[data.billingCycle]
+                }/${data.billingCycle === "monthly" ? "mo" : "yr"}`}</p>
+                {data.billingCycle === "yearly" && (
+                  <p className="text-sm">2 months free</p>
+                )}
+              </div>
+
+              <div
+                onClick={() => handlePlanChange("pro")}
+                className={`cursor-pointer border rounded-lg p-4 ${
+                  data.planData === "pro"
+                    ? "border-marine-blue bg-blue-50"
+                    : "border-light-gray"
+                }`}
+              >
+                <img src={proIcon} alt="Pro" className="mt-2 mb-10" />
+                <h3 className="text-lg font-semibold">Pro</h3>
+                <p className="text-cool-gray my-1">{`$${
+                  planOptions.pro[data.billingCycle]
+                }/${data.billingCycle === "monthly" ? "mo" : "yr"}`}</p>
+                {data.billingCycle === "yearly" && (
+                  <p className="text-sm">2 months free</p>
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-center items-center mb-6">
+              <span
+                className={`mr-4 font-medium ${
+                  data.billingCycle === "monthly"
+                    ? "text-marine-blue"
+                    : "text-cool-gray"
+                }`}
+              >
+                Monthly
+              </span>
+              <label className={classes.switch}>
+                <input
+                  type="checkbox"
+                  onChange={handleBillingCycleChange}
+                  checked={data.billingCycle === "yearly"}
+                />
+                <span className={`${classes.slider} round`}></span>
+              </label>
+              <span
+                className={`ml-4 font-medium ${
+                  data.billingCycle === "yearly"
+                    ? "text-marine-blue"
+                    : "text-cool-gray"
+                }`}
+              >
+                Yearly
+              </span>
+            </div>
+          </>
+        );
+
       default:
-        return <div>Not Found</div>;
+        return <div>In progress...</div>;
     }
   };
 
@@ -97,7 +226,9 @@ const App = () => {
                     {index + 1}
                   </div>
                   <div className="ml-4 text-sm font-medium">
-                    <p className="text-xs text-cool-gray">STEP {currentStep}</p>
+                    <p className="text-xs text-light-gray">
+                      STEP {currentStep}
+                    </p>
                     <p className="text-white font-bold">
                       {step.toLocaleUpperCase()}
                     </p>
@@ -107,8 +238,8 @@ const App = () => {
             ))}
           </div>
 
-          <div className="w-2/3 pl-6 m-8">
-            {renderStepContent(currentStep)}
+          <div className="w-2/3 pl-6 m-8 flex flex-col justify-between">
+            <div>{renderStepContent(currentStep)}</div>
             <div className="mt-6 flex justify-between">
               {currentStep > 1 ? (
                 <button
