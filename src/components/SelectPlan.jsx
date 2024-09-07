@@ -37,9 +37,9 @@ const SelectPlan = ({ data, setData }) => {
 
       <div className="grid grid-cols-3 gap-4 mb-8">
         <div
-          onClick={() => handlePlanChange("arcade")}
+          onClick={() => handlePlanChange("Arcade")}
           className={`cursor-pointer border rounded-lg p-4 ${
-            data.planData === "arcade"
+            data.planData === "Arcade"
               ? "border-marine-blue bg-magnolia"
               : "border-light-gray"
           }`}
@@ -55,9 +55,9 @@ const SelectPlan = ({ data, setData }) => {
         </div>
 
         <div
-          onClick={() => handlePlanChange("advanced")}
+          onClick={() => handlePlanChange("Advanced")}
           className={`cursor-pointer border rounded-lg p-4 ${
-            data.planData === "advanced"
+            data.planData === "Advanced"
               ? "border-marine-blue bg-magnolia"
               : "border-light-gray"
           }`}
@@ -73,9 +73,9 @@ const SelectPlan = ({ data, setData }) => {
         </div>
 
         <div
-          onClick={() => handlePlanChange("pro")}
+          onClick={() => handlePlanChange("Pro")}
           className={`cursor-pointer border rounded-lg p-4 ${
-            data.planData === "pro"
+            data.planData === "Pro"
               ? "border-marine-blue bg-magnolia"
               : "border-light-gray"
           }`}

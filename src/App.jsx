@@ -4,6 +4,7 @@ import SelectPlan from "./components/SelectPlan";
 import Steps from "./components/Steps";
 import Buttons from "./components/Buttons";
 import AddOns from "./components/AddOns";
+import Summary from "./components/Summary";
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -18,7 +19,7 @@ const App = () => {
       email: false,
       phone: false,
     },
-    planData: "advanced",
+    planData: "Advanced",
     billingCycle: "monthly",
     selectedAddOns: {
       onlineService: false,
@@ -39,6 +40,8 @@ const App = () => {
         return <SelectPlan data={data} setData={setData} />;
       case 3:
         return <AddOns data={data} setData={setData} />;
+      case 4:
+        return <Summary data={data} setCurrentStep={setCurrentStep} />;
 
       default:
         return <div>In progress...</div>;

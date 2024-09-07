@@ -18,7 +18,7 @@ const Steps = ({ steps, currentStep }) => {
                 {index + 1}
               </div>
               <div className="ml-4 text-sm font-medium">
-                <p className="text-xs text-light-gray">STEP {currentStep}</p>
+                <p className="text-xs text-light-gray">STEP {index + 1}</p>
                 <p className="text-white font-bold">{step.toUpperCase()}</p>
               </div>
             </div>
