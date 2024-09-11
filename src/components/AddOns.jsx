@@ -1,12 +1,7 @@
 import checkmarkIcon from "../assets/images/icon-checkmark.png";
+import { addOnPrices1 } from "../assets/prices";
 
 const AddOns = ({ data, setData }) => {
-  const addOnPrices = {
-    onlineService: { monthly: 1, yearly: 10 },
-    largerStorage: { monthly: 2, yearly: 20 },
-    customizableProfile: { monthly: 2, yearly: 20 },
-  };
-
   const toggleAddOn = (addOn) => {
     setData((prevData) => {
       return {

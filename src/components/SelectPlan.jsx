@@ -2,14 +2,9 @@ import classes from "./YourInfo.module.css";
 import arcadeIcon from "../assets/images/icon-arcade.svg";
 import advancedIcon from "../assets/images/icon-advanced.svg";
 import proIcon from "../assets/images/icon-pro.svg";
+import { planOptions } from "../assets/prices";
 
 const SelectPlan = ({ data, setData }) => {
-  const planOptions = {
-    arcade: { monthly: 9, yearly: 90 },
-    advanced: { monthly: 12, yearly: 120 },
-    pro: { monthly: 15, yearly: 150 },
-  };
-
   const handleBillingCycleChange = () => {
     setData((prevData) => {
       return {
