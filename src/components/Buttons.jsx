@@ -1,5 +1,18 @@
-const Buttons = ({ currentStep, setCurrentStep, steps, data }) => {
+const Buttons = ({ currentStep, setCurrentStep, steps, data, setData }) => {
   const nextStep = () => {
+    if (currentStep === 1) {
+      setData((prevData) => {
+        return {
+          ...prevData,
+          wasInputClicked: {
+            name: true,
+            email: true,
+            phone: true,
+          },
+        };
+      });
+    }
+
     if (data.formData.name && data.formData.email && data.formData.phone) {
       setCurrentStep((prevStep) => prevStep + 1);
     }

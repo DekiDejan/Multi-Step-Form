@@ -60,6 +60,7 @@ const App = () => {
               setCurrentStep={setCurrentStep}
               steps={steps}
               data={data}
+              setData={setData}
             />
           </div>
         </div>

@@ -48,7 +48,11 @@ const YourInfo = ({ data, setData }) => {
             onChange={handleInputsChange}
             onFocus={handleFocusChange}
             placeholder="e.g. Stephen King"
-            className="border w-full p-2 rounded-md mt-1 outline-marine-blue"
+            className={`border w-full p-2 rounded-md mt-1 ${
+              data.formData.name === "" && data.wasInputClicked.name
+                ? "outline-strawberry-red"
+                : "outline-marine-blue"
+            }`}
           />
         </div>
         <div className="mb-4">
@@ -67,7 +71,11 @@ const YourInfo = ({ data, setData }) => {
             onChange={handleInputsChange}
             onFocus={handleFocusChange}
             placeholder="e.g. stephenking@lorem.com"
-            className="border w-full p-2 rounded-md mt-1 outline-marine-blue"
+            className={`border w-full p-2 rounded-md mt-1 ${
+              data.formData.email === "" && data.wasInputClicked.email
+                ? "outline-strawberry-red"
+                : "outline-marine-blue"
+            }`}
           />
         </div>
         <div className="mb-4">
@@ -86,7 +94,11 @@ const YourInfo = ({ data, setData }) => {
             onChange={handleInputsChange}
             onFocus={handleFocusChange}
             placeholder="e.g. +1 234 567 890"
-            className="border w-full p-2 rounded-md mt-1 outline-marine-blue"
+            className={`border w-full p-2 rounded-md mt-1 ${
+              data.formData.phone === "" && data.wasInputClicked.phone
+                ? "outline-strawberry-red"
+                : "outline-marine-blue"
+            }`}
           />
         </div>
       </form>
