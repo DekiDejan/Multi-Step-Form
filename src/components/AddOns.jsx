@@ -1,5 +1,5 @@
 import checkmarkIcon from "../assets/images/icon-checkmark.png";
-import { addOnPrices1 } from "../assets/prices";
+import { addOnPrices } from "../assets/prices";
 
 const AddOns = ({ data, setData }) => {
   const toggleAddOn = (addOn) => {
