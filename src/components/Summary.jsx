@@ -1,4 +1,9 @@
+import { planOptions, addOnPrices } from "../assets/prices";
+
 const Summary = ({ data, setCurrentStep }) => {
+  const planPrice = planOptions[data.planData.toLowerCase()][data.billingCycle];
+  const billingType = data.billingCycle === "monthly" ? "mo" : "yr";
+
   return (
     <>
       <h2 className="text-2xl font-semibold mb-2">Finishing up</h2>
@@ -22,8 +27,8 @@ const Summary = ({ data, setCurrentStep }) => {
               </p>
             </div>
           </div>
-          <p className="text-purplish-blue">
-            {`+$/${data.billingCycle === "monthly" ? "mo" : "yr"}`}
+          <p className="text-marine-blue font-bold">
+            {`$${planPrice}/${billingType}`}
           </p>
         </div>
       </div>
