@@ -5,6 +5,7 @@ import Steps from "./components/Steps";
 import Buttons from "./components/Buttons";
 import AddOns from "./components/AddOns";
 import Summary from "./components/Summary";
+import ThankYou from "./components/ThankYou";
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -30,8 +31,6 @@ const App = () => {
 
   const steps = ["Your Info", "Select Plan", "Add-Ons", "Summary"];
 
-  console.log(data);
-
   const renderStepContent = (step) => {
     switch (step) {
       case 1:
@@ -42,6 +41,8 @@ const App = () => {
         return <AddOns data={data} setData={setData} />;
       case 4:
         return <Summary data={data} setCurrentStep={setCurrentStep} />;
+      case 5:
+        return <ThankYou data={data} />;
 
       default:
         return <div>In progress...</div>;
@@ -54,7 +55,7 @@ const App = () => {
         <div className="flex">
           <Steps steps={steps} currentStep={currentStep} />
           <div className="w-2/3 pl-6 m-8 flex flex-col justify-between">
-            <div>{renderStepContent(currentStep)}</div>
+            <div className="h-full">{renderStepContent(currentStep)}</div>
             <Buttons
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}

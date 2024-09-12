@@ -24,7 +24,7 @@ const Buttons = ({ currentStep, setCurrentStep, steps, data, setData }) => {
 
   return (
     <div className="mt-6 flex justify-between">
-      {currentStep > 1 ? (
+      {currentStep > 1 && currentStep <= steps.length ? (
         <button
           onClick={prevStep}
           className="text-cool-gray hover:text-marine-blue px-4 py-2 rounded-md"
@@ -42,9 +42,14 @@ const Buttons = ({ currentStep, setCurrentStep, steps, data, setData }) => {
           Next Step
         </button>
       ) : (
-        <button className="bg-purplish-blue hover:bg-pastel-blue text-white px-6 py-2 rounded-md">
-          Confirm
-        </button>
+        currentStep === steps.length && (
+          <button
+            onClick={nextStep}
+            className="bg-purplish-blue hover:bg-pastel-blue text-white px-6 py-2 rounded-md"
+          >
+            Confirm
+          </button>
+        )
       )}
     </div>
   );
