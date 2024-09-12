@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import YourInfo from "./components/YourInfo";
 import SelectPlan from "./components/SelectPlan";
 import Steps from "./components/Steps";
@@ -51,10 +51,10 @@ const App = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-magnolia">
-      <div className="bg-white shadow-md rounded-xl p-4 w-full max-w-4xl">
-        <div className="flex">
+      <div className="bg-white shadow-md rounded-xl md:p-4 w-full max-w-4xl">
+        <div className="flex flex-col md:flex-row md:items-stretch items-center">
           <Steps steps={steps} currentStep={currentStep} />
-          <div className="w-2/3 pl-6 m-8 flex flex-col justify-between">
+          <div className="md:w-2/3 py-8 md:py-0 px-6 md:px-0 rounded-lg md:pl-4 lg:pl-12 m-4 md:m-8 flex flex-col justify-between -translate-y-24 xs:-translate-y-36 sm:-translate-y-52 md:translate-y-0 bg-white">
             <div className="h-full">{renderStepContent(currentStep)}</div>
             <Buttons
               currentStep={currentStep}
