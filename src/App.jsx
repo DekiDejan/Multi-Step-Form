@@ -50,20 +50,18 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-magnolia">
-      <div className="bg-white shadow-md rounded-xl md:p-4 w-full max-w-4xl">
-        <div className="flex flex-col md:flex-row md:items-stretch items-center">
-          <Steps steps={steps} currentStep={currentStep} />
-          <div className="md:w-2/3 py-8 md:py-0 px-6 md:px-0 rounded-lg md:pl-4 lg:pl-12 m-4 md:m-8 flex flex-col justify-between -translate-y-24 xs:-translate-y-36 sm:-translate-y-52 md:translate-y-0 bg-white">
-            <div className="h-full">{renderStepContent(currentStep)}</div>
-            <Buttons
-              currentStep={currentStep}
-              setCurrentStep={setCurrentStep}
-              steps={steps}
-              data={data}
-              setData={setData}
-            />
-          </div>
+    <div className="min-h-screen flex justify-center md:items-center bg-magnolia">
+      <div className="flex flex-col md:flex-row md:items-stretch items-center bg-white shadow-md rounded-xl md:p-4 w-full max-w-4xl">
+        <Steps steps={steps} currentStep={currentStep} />
+        <div className="md:w-2/3 m-4 md:m-8 py-8 md:py-0 px-4 md:px-6 lg:px-12 bg-white rounded-lg flex flex-col justify-between absolute md:static top-20">
+          <div className="h-full">{renderStepContent(currentStep)}</div>
+          <Buttons
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+            steps={steps}
+            data={data}
+            setData={setData}
+          />
         </div>
       </div>
     </div>
