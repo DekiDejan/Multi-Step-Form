@@ -12,7 +12,7 @@ const Summary = ({ data, setCurrentStep }) => {
   };
 
   const selectedAddOns = Object.entries(data.selectedAddOns)
-    .filter(([_key, value]) => value === true)
+    .filter(([_key, value]) => value)
     .map(([key]) => {
       const price = addOnPrices[key][data.billingCycle];
       return { key, name: capitalizeAddOnName(key), price };
@@ -34,7 +34,7 @@ const Summary = ({ data, setCurrentStep }) => {
         <div className={"p-4 flex justify-between items-center"}>
           <div className="flex gap-3">
             <div>
-              <h3 className="font-semibold">
+              <h3 className="text-sm md:text-base font-semibold">
                 {data.planData} (
                 {data.billingCycle === "monthly" ? "Monthly" : "Yearly"})
               </h3>
@@ -46,7 +46,7 @@ const Summary = ({ data, setCurrentStep }) => {
               </p>
             </div>
           </div>
-          <p className="text-marine-blue font-bold">
+          <p className="text-marine-blue font-bold text-sm md:text-base">
             {`$${planPrice}/${billingType}`}
           </p>
         </div>
@@ -68,7 +68,7 @@ const Summary = ({ data, setCurrentStep }) => {
         <p>
           Total {data.billingCycle === "monthly" ? "(per month)" : "(per year)"}
         </p>
-        <p className="text-xl font-bold text-purplish-blue">{`$${
+        <p className="text-base md:text-xl font-bold text-purplish-blue">{`$${
           planPrice + addOnPrice
         }/${billingType}`}</p>
       </div>
